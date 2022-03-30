@@ -1,7 +1,7 @@
 {
   "name": "@notable/html2markdown",
   "description": "A small function for converting HTML to Markdown.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
