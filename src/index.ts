@@ -3,7 +3,7 @@
 
 import Mime from './mime';
 import turndown from './turndown';
-import {TurndownOptions, TurndownService} from './types.js';
+import type {Options, TurndownOptions, TurndownService} from './types.js';
 
 /* MAIN */
 
@@ -185,3 +185,4 @@ const html2markdown = ( html: string, options?: TurndownOptions ): string => {
 /* EXPORT */
 
 export default html2markdown;
+export type {Options};
