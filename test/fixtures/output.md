@@ -92,3 +92,10 @@ Left
 <p align="right">Right</p>
 
 <p align="justify">Justify</p>
+
+### **TABLE**
+
+| Foo | Bar |
+| --- | --- |
+| John | Doe |
+| Jane | Doe |

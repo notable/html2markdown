@@ -3,6 +3,8 @@
 
 import Mime from './mime';
 import turndown from './turndown';
+import turndownPluginTables from './turndown.plugin.tables';
+import turndownPluginTasks from './turndown.plugin.tasks';
 import type {Options, TurndownOptions, TurndownService} from './types.js';
 
 /* MAIN */
@@ -30,6 +32,9 @@ const html2markdown = ( html: string, options?: TurndownOptions ): string => {
   /* TURNDOWN */
 
   const service: TurndownService = turndown ( options );
+
+  service.use ( turndownPluginTables );
+  service.use ( turndownPluginTasks );
 
   service.addRule ( 'strikethrough', {
     filter: ['del', 's'],

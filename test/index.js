@@ -1,9 +1,9 @@
 
 /* IMPORT */
 
+const domino = require ( 'domino' );
 const {describe} = require ( 'fava' );
 const fs = require ( 'fs' );
-const minidom = require ( 'minidom' );
 const path = require ( 'path' );
 const {default: html2markdown} = require ( '../dist' );
 
@@ -13,7 +13,7 @@ const convert = html => {
 
   class DOMParser {
     parseFromString ( html ) {
-      return minidom ( html );
+      return domino.createWindow ( html ).document;
     }
   }
 
