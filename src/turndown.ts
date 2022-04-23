@@ -528,6 +528,7 @@ function RootNode (input, options) {
   } else {
     root = input.cloneNode(true);
   }
+  Array.from ( doc.querySelectorAll ( 'colgroup' ) ).forEach ( ele => ele.parentNode.removeChild ( ele ) ); // Deleting colgroups
   collapseWhitespace({
     element: root,
     isBlock: isBlock,
