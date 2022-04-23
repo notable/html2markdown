@@ -65,8 +65,10 @@ function isHeadingRow (tr) {
   return (
     parentNode.nodeName === 'THEAD' ||
     (
-      (parentNode.nodeName === 'TABLE' || isFirstTbody(parentNode)) &&
-      every.call(tr.childNodes, function (n) { return n.nodeName === 'TH' })
+      (parentNode.nodeName === 'TABLE' || isFirstTbody(parentNode)) && (
+        tr.previousSibling === null ||
+        every.call(tr.childNodes, function (n) { return n.nodeName === 'TH' })
+      )
     )
   )
 }
