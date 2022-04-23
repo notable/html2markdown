@@ -58,7 +58,7 @@ const html2markdown = ( html: string, options?: TurndownOptions ): string => {
   });
 
   service.addRule ( 'alignment', {
-    filter: node => node.nodeName !== 'TABLE' && ( node.getAttribute ( 'style' ) || '' ).includes ( 'text-align:' ),
+    filter: node => node.nodeName !== 'TABLE' && node.nodeName !== 'TR' && node.nodeName !== 'TD' && node.nodeName !== 'TH' && ( node.getAttribute ( 'style' ) || '' ).includes ( 'text-align:' ),
     replacement: ( str, ele: HTMLElement ) => {
       str = str.trim ();
       if ( !str.length ) return '';
