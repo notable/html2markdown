@@ -90,7 +90,7 @@ function cell (content, node) {
   var index = indexOf.call(node.parentNode.childNodes, node)
   var prefix = ' '
   if (index === 0) prefix = '| '
-  return prefix + content + ' |'
+  return prefix + content.trim () + ' |'
 }
 
 export default function tables (turndownService) {
