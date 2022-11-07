@@ -1,28 +1,19 @@
 {
   "name": "@notable/html2markdown",
+  "repository": "github:fabiospampinato/@notable/html2markdown",
   "description": "A small function for converting HTML to Markdown.",
   "version": "1.1.3",
+  "type": "module",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "clean": "rimraf dist",
-    "compile": "tsc --skipLibCheck",
-    "compile:watch": "tsc --skipLibCheck --watch",
-    "test": "fava",
-    "test:watch": "fava -w",
+    "clean": "tsex clean",
+    "compile": "tsex compile",
+    "compile:watch": "tsex compile --watch",
+    "test": "tsex test",
+    "test:watch": "tsex test --watch",
     "prepublishOnly": "npm run clean && npm run compile && npm run test"
-  },
-  "bugs": {
-    "url": "https://github.com/fabiospampinato/html2markdown/issues"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Fabio Spampinato",
-    "email": "spampinabio@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fabiospampinato/html2markdown.git"
   },
   "keywords": [
     "html",
@@ -30,13 +21,13 @@
     "conversion"
   ],
   "dependencies": {
-    "mime2ext": "^1.0.1"
+    "mime2ext": "^2.0.0"
   },
   "devDependencies": {
     "@types/turndown": "^5.0.1",
     "domino": "^2.1.6",
-    "fava": "^0.0.5",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.6.3"
+    "fava": "^0.0.6",
+    "tsex": "^1.1.2",
+    "typescript": "^4.8.4"
   }
 }

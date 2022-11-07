@@ -5,6 +5,7 @@ import Mime from './mime';
 import turndown from './turndown';
 import turndownPluginTables from './turndown.plugin.tables';
 import turndownPluginTasks from './turndown.plugin.tasks';
+import {isElement} from './utils';
 import type {Options, TurndownOptions, TurndownService} from './types.js';
 
 /* MAIN */
@@ -59,14 +60,15 @@ const html2markdown = ( html: string, options?: TurndownOptions ): string => {
 
   service.addRule ( 'alignment', {
     filter: node => node.nodeName !== 'TABLE' && node.nodeName !== 'TR' && node.nodeName !== 'TD' && node.nodeName !== 'TH' && ( node.getAttribute ( 'style' ) || '' ).includes ( 'text-align:' ),
-    replacement: ( str, ele: HTMLElement ) => {
+    replacement: ( str, element ) => {
+      if ( !isElement ( element ) ) return str;
       str = str.trim ();
       if ( !str.length ) return '';
-      const style = ele.getAttribute ( 'style' );
+      const style = element.getAttribute ( 'style' );
       if ( !style ) return '';
       const alignment = style.match ( /text-align:\s*(\S+?);/ );
       if ( !alignment ) return `${str}\n\n`;
-      const nodeName = ele.nodeName;
+      const nodeName = element.nodeName;
       const tag = /^h\d$/i.test ( nodeName ) ? nodeName.toLowerCase () : 'p';
       if ( str.includes ( '\n' ) ) str = `\n\n${str}\n\n`;
       return `<${tag} align="${alignment[1]}">${str}</${tag}>\n\n`;
@@ -86,9 +88,10 @@ const html2markdown = ( html: string, options?: TurndownOptions ): string => {
 
   service.addRule ( 'media-enex', {
     filter: node => node.nodeName === 'DIV' && node.getAttribute ( 'node' ) === 'EN-MEDIA' && !!node.getAttribute ( 'hash' ) && !!node.getAttribute ( 'type' ),
-    replacement: ( str, ele: HTMLElement ) => {
-      const hash = ele.getAttribute ( 'hash' );
-      const type = ele.getAttribute ( 'type' ) || '';
+    replacement: ( str, element ) => {
+      if ( !isElement ( element ) ) return str;
+      const hash = element.getAttribute ( 'hash' );
+      const type = element.getAttribute ( 'type' ) || '';
       const filename = `${hash}${Mime.getExtension ( type )}`;
       const isImage = Mime.isImage ( type );
       if ( isImage ) {
@@ -101,10 +104,11 @@ const html2markdown = ( html: string, options?: TurndownOptions ): string => {
 
   service.addRule ( 'mixed', {
     filter: ['font', 'span'],
-    replacement: ( str, ele: HTMLElement ) => {
+    replacement: ( str, element ) => {
+      if ( !isElement ( element ) ) return str;
       if ( !str.trim () ) return '';
       /* STYLE */
-      const style = ele.getAttribute ( 'style' );
+      const style = element.getAttribute ( 'style' );
       let newStyle = '';
       if ( style ) {
         /* FORMATTING */
@@ -146,7 +150,7 @@ const html2markdown = ( html: string, options?: TurndownOptions ): string => {
         }
       }
       /* COLOR */
-      const colorAttr = ele.getAttribute ( 'color' ); // Color
+      const colorAttr = element.getAttribute ( 'color' ); // Color
       if ( colorAttr && colorAttr !== '#010101' ) {
         newStyle += `color: ${colorAttr};`
       }

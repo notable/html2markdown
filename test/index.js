@@ -1,11 +1,11 @@
 
 /* IMPORT */
 
-const domino = require ( 'domino' );
-const {describe} = require ( 'fava' );
-const fs = require ( 'fs' );
-const path = require ( 'path' );
-const {default: html2markdown} = require ( '../dist' );
+import domino from 'domino';
+import {describe} from 'fava';
+import fs from 'node:fs';
+import path from 'node:path';
+import html2markdown from '../dist/index.js';
 
 /* HELPERS */
 
@@ -31,8 +31,8 @@ describe ( 'HTML2Markdown', it => {
 
   it ( 'convers HTML into markdown', t => {
 
-    const inputPath = path.join ( __dirname, 'fixtures', 'input.html' );
-    const outputPath = path.join ( __dirname, 'fixtures', 'output.md' );
+    const inputPath = path.join ( process.cwd (), 'test', 'fixtures', 'input.html' );
+    const outputPath = path.join ( process.cwd (), 'test', 'fixtures', 'output.md' );
     const input = fs.readFileSync ( inputPath, 'utf8' ).trimEnd ();
     const output = fs.readFileSync ( outputPath, 'utf8' ).trimEnd ();
 

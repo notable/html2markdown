@@ -20,4 +20,4 @@ type TurndownService = import ( 'turndown' );
 
 /* EXPORT */
 
-export {Options, TurndownOptions, TurndownService};
+export type {Options, TurndownOptions, TurndownService};
