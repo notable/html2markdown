@@ -2,7 +2,7 @@
   "name": "@notable/html2markdown",
   "repository": "github:fabiospampinato/@notable/html2markdown",
   "description": "A small function for converting HTML to Markdown.",
-  "version": "1.1.3",
+  "version": "2.0.0",
   "type": "module",
   "main": "dist/index.js",
   "exports": "./dist/index.js",
