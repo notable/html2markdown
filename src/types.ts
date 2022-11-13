@@ -11,7 +11,14 @@ type Options = {
   hr?: string,
   linkReferenceStyle?: 'full' | 'collapsed' | 'shortcut',
   linkStyle?: 'inlined' | 'referenced',
-  strongDelimiter?: '__' | '**'
+  strongDelimiter?: '__' | '**',
+  parser?: Parser
+};
+
+type Parser = {
+  new (): {
+    parseFromString: ( html: string, mimeType?: string ) => Document
+  }
 };
 
 type TurndownOptions = import ( 'turndown' ).Options;
