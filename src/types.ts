@@ -17,7 +17,7 @@ type Options = {
 
 type Parser = {
   new (): {
-    parseFromString: ( html: string, mimeType?: string ) => Document
+    parseFromString: ( html: string, mimeType: string ) => Document
   }
 };
 
